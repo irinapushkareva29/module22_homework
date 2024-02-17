@@ -6,7 +6,8 @@ const useRequest = (lat,long)=> {
       return response.json();
     })
     .then((data) => {
-       console.log(data); 
+       console.log(`Временная зона,в которой вы находитесь:${data.timezone}`);
+       console.log(`Местные дата и время:${data.date_time_txt}`);
     })
     .catch(() => {
        console.log('error') 
@@ -18,8 +19,7 @@ btn.addEventListener ('click', () => {
     navigator.geolocation.getCurrentPosition((position)=> {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
-    const result = useRequest(latitude,longitude);
-    console.log(result["timezone"]);
+    useRequest(latitude,longitude);
   })
  
 } else {
